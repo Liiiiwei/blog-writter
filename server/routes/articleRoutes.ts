@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const router = express.Router();
-const ARTICLES_DIR = path.join(__dirname, "../../generated_articles");
+const ARTICLES_DIR = path.join(__dirname, "../../output/articles");
 
 // 1. Suggest Titles
 router.post("/suggest-titles", async (req, res) => {
