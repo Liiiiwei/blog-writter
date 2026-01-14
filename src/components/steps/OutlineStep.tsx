@@ -49,12 +49,12 @@ export const OutlineStep: React.FC<Props> = ({ outline, setOutline, onBack, onGe
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden min-h-[60vh] flex flex-col transition-shadow hover:shadow-md">
                 <div className="flex-1 p-8">
                     {mode === 'preview' ? (
-                        <article className="prose prose-lg max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-6 prose-li:text-gray-700 text-gray-900">
+                        <article className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-h2:text-2xl prose-h2:mt-6 prose-li:text-gray-700 text-gray-900">
                             <ReactMarkdown>{outline}</ReactMarkdown>
                         </article>
                     ) : (
                         <textarea
-                            className="w-full h-full min-h-[60vh] p-0 border-none focus:ring-0 text-gray-800 font-mono text-sm leading-relaxed resize-none"
+                            className="w-full h-full min-h-[60vh] p-0 border-none focus:ring-0 bg-white text-gray-900 font-mono text-sm leading-relaxed resize-none"
                             value={outline}
                             onChange={(e) => setOutline(e.target.value)}
                             placeholder="在此編輯大綱..."

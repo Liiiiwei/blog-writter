@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useArticleFlow } from './hooks/useArticleFlow';
 import { getStorageService, Article } from './services/storageService';
-import { Settings } from 'lucide-react';
+import { Settings, Layout, PlusCircle, PenTool } from 'lucide-react';
 
 // Components
 import { InputStep } from './components/steps/InputStep';
@@ -58,52 +58,75 @@ export default function App() {
         }
     };
 
-    return (
-        <div className="min-h-screen bg-stone-50 pb-20">
-            <div className="container mx-auto px-4 py-8 max-w-6xl">
-                {/* Header */}
-                <header className="text-center mb-8">
-                    <motion.h1
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl font-light text-gray-800 mb-1 tracking-wide"
-                    >
-                        LIWEI SIA SEO
-                    </motion.h1>
-                    <p className="text-xs text-gray-500 tracking-[0.3em] uppercase font-light">Strategic Writing Hub</p>
-                </header>
+    const handleNewPost = () => {
+        if (window.confirm('確定要開始新文章嗎？未儲存的內容將會遺失。')) {
+            draft.setTitle('');
+            draft.setReference('');
+            draft.setCaseContext('');
+            draft.setOutline('');
+            setStep('input');
+            setActiveTab('draft');
+        }
+    };
 
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                    {/* Tabs */}
-                    <div className="flex border-b border-gray-200 bg-gray-50/50">
-                        <div className="flex-1 flex">
-                            {[{ key: 'draft', label: '構思大綱' }, { key: 'library', label: '文章庫存' }].map((tab) => (
-                                <button
-                                    key={tab.key}
-                                    onClick={() => setActiveTab(tab.key as any)}
-                                    className={`flex-1 px-6 py-4 text-sm font-medium transition-colors relative ${activeTab === tab.key ? 'text-blue-600' : 'text-gray-500 hover:text-gray-800'
-                                        }`}
-                                >
-                                    {tab.label}
-                                    {activeTab === tab.key && (
-                                        <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500" />
-                                    )}
-                                </button>
-                            ))}
-                        </div>
+    return (
+        <div className="flex h-screen bg-stone-50 overflow-hidden">
+            {/* Sidebar */}
+            <aside className="w-64 bg-white border-r border-gray-200 flex flex-col flex-shrink-0 z-20">
+                <div className="p-8 pb-4">
+                    <h1 className="text-xl font-light text-gray-800 tracking-wider">LIWEI SIA</h1>
+                    <p className="text-[10px] text-gray-400 tracking-[0.2em] uppercase mt-1">Strategic Writing Hub</p>
+                </div>
+
+                <nav className="flex-1 px-4 py-4 space-y-2">
+                    <button
+                        onClick={handleNewPost}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors mb-6"
+                    >
+                        <PlusCircle size={18} />
+                        開始新文章
+                    </button>
+
+                    <div className="space-y-1">
+                        <button
+                            onClick={() => setActiveTab('draft')}
+                            className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-all ${activeTab === 'draft' ? 'bg-gray-100 text-gray-900' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                                }`}
+                        >
+                            <PenTool size={18} />
+                            撰寫區
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('library')}
+                            className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-all ${activeTab === 'library' ? 'bg-gray-100 text-gray-900' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                                }`}
+                        >
+                            <Layout size={18} />
+                            文章庫存
+                        </button>
                         <button
                             onClick={() => setActiveTab('settings')}
-                            className="px-4 py-4 text-gray-500 hover:text-gray-800 transition-colors border-l border-gray-200"
-                            title="設定"
+                            className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-all ${activeTab === 'settings' ? 'bg-gray-100 text-gray-900' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                                }`}
                         >
                             <Settings size={18} />
+                            系統設定
                         </button>
                     </div>
+                </nav>
 
-                    <div className="p-8">
+                <div className="p-4 border-t border-gray-100 text-center">
+                    <p className="text-xs text-gray-300">v2.0.1 Stable</p>
+                </div>
+            </aside>
+
+            {/* Main Content */}
+            <main className="flex-1 overflow-hidden relative flex flex-col">
+                <div className="flex-1 overflow-y-auto custom-scrollbar p-8 md:p-12">
+                    <div className="max-w-5xl mx-auto">
                         <AnimatePresence mode="wait">
                             <motion.div
-                                key={activeTab}
+                                key={`${activeTab}-${step}`}
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
@@ -156,11 +179,7 @@ export default function App() {
                         </AnimatePresence>
                     </div>
                 </div>
-
-                <footer className="text-center mt-12 text-xs text-gray-400 tracking-wider">
-                    LIWEI SIA STRATEGIC ASSISTANT © 2025
-                </footer>
-            </div>
+            </main>
         </div>
     );
 }

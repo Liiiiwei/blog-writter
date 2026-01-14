@@ -108,14 +108,14 @@ export const ArticleStep: React.FC<Props> = ({
 
                 <div className="flex-1 p-8">
                     {mode === 'preview' ? (
-                        <article className="prose prose-lg max-w-none prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h2:mt-8 prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700 text-gray-900">
+                        <article className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-h1:text-3xl prose-h2:text-2xl prose-h2:mt-8 prose-p:text-gray-700 prose-p:leading-relaxed prose-li:text-gray-700 text-gray-900">
                             <ReactMarkdown>{body}</ReactMarkdown>
                         </article>
                     ) : (
                         <textarea
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
-                            className="w-full h-full min-h-[500px] p-0 border-none focus:ring-0 text-gray-800 font-mono text-sm leading-relaxed resize-none"
+                            className="w-full h-full min-h-[500px] p-0 border-none focus:ring-0 bg-white text-gray-900 font-mono text-sm leading-relaxed resize-none"
                             placeholder="在此輸入 Markdown 內容..."
                         />
                     )}
