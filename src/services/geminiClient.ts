@@ -212,6 +212,16 @@ ${outline}
      * 文字後處理：修正常見錯誤
      */
     private polishText(text: string): string {
+        let polished = text;
+
+        // Strip markdown code fences if present (e.g. ```markdown ... ```)
+        // This prevents the content from being rendered as a single code block
+        if (polished.trim().startsWith('```')) {
+            polished = polished
+                .replace(/^```\w*\n?/, '') // Remove opening fence (e.g. ```markdown)
+                .replace(/\n?```\s*$/, ''); // Remove closing fence
+        }
+
         const corrections: Record<string, string> = {
             // 常見術語修正
             "數位行銷": "數位行銷",
@@ -230,7 +240,6 @@ ${outline}
             "ins": "Instagram"
         };
 
-        let polished = text;
         for (const [wrong, correct] of Object.entries(corrections)) {
             const regex = new RegExp(wrong, 'g');
             polished = polished.replace(regex, correct);

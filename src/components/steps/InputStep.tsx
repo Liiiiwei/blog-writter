@@ -30,7 +30,7 @@ export const InputStep: React.FC<Props> = ({
                 <label className="block text-sm font-medium text-gray-700 mb-2">文章類型</label>
                 <div className="relative">
                     <select
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white appearance-none"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900 appearance-none"
                         value={articleType}
                         onChange={(e) => setArticleType(e.target.value)}
                     >
@@ -47,14 +47,14 @@ export const InputStep: React.FC<Props> = ({
                     <input
                         type="text"
                         placeholder="於此輸入標題..."
-                        className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900 placeholder-gray-400"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                     <button
                         onClick={onOptimizeTitle}
                         disabled={loading || (!title && !reference)}
-                        className="px-4 py-3 border border-blue-500 text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-colors disabled:opacity-50 flex items-center gap-2"
+                        className="px-4 py-3 border border-blue-500 text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-colors disabled:opacity-50 flex items-center gap-2 bg-white"
                     >
                         {loading ? <Loader2 size={18} className="animate-spin" /> : <Sparkles size={18} />}
                         AI 建議
@@ -65,7 +65,7 @@ export const InputStep: React.FC<Props> = ({
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">核心案例/數據</label>
                 <textarea
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none bg-white text-gray-900 placeholder-gray-400"
                     placeholder="請輸入您實際操作過的案例、數據佐證..."
                     rows={4}
                     value={caseContext}
@@ -76,7 +76,7 @@ export const InputStep: React.FC<Props> = ({
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">參考素材與觀點</label>
                 <textarea
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none bg-white text-gray-900 placeholder-gray-400"
                     placeholder="在此紀錄靈感、其他參考網址..."
                     rows={4}
                     value={reference}

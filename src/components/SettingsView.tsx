@@ -123,7 +123,7 @@ export function SettingsView({ onBack }: SettingsViewProps) {
                                 value={apiKey}
                                 onChange={(e) => setApiKey(e.target.value)}
                                 placeholder="AIza..."
-                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
                             />
                             <button
                                 onClick={() => setApiKeyVisible(!apiKeyVisible)}
@@ -166,7 +166,7 @@ export function SettingsView({ onBack }: SettingsViewProps) {
                             value={wpUrl}
                             onChange={(e) => setWpUrl(e.target.value)}
                             placeholder="https://yoursite.com"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
                         />
                     </label>
                     <label className="block">
@@ -176,7 +176,7 @@ export function SettingsView({ onBack }: SettingsViewProps) {
                             value={wpUser}
                             onChange={(e) => setWpUser(e.target.value)}
                             placeholder="admin"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
                         />
                     </label>
                     <label className="block">
@@ -186,7 +186,7 @@ export function SettingsView({ onBack }: SettingsViewProps) {
                             value={wpPassword}
                             onChange={(e) => setWpPassword(e.target.value)}
                             placeholder="xxxx xxxx xxxx xxxx xxxx xxxx"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
                         />
                     </label>
                     <button
