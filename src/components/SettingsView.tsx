@@ -110,7 +110,7 @@ export function SettingsView({ onBack }: SettingsViewProps) {
             </div>
 
             {/* Gemini API Settings */}
-            <section className="bg-gray-50 rounded-lg p-6 space-y-4">
+            <section className="bg-white border border-gray-200 rounded-xl p-6 space-y-4 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="text-lg font-medium text-gray-800">Gemini AI 設定</h3>
                 <div className="space-y-3">
                     <label className="block">
@@ -156,7 +156,7 @@ export function SettingsView({ onBack }: SettingsViewProps) {
             </section>
 
             {/* WordPress Settings */}
-            <section className="bg-gray-50 rounded-lg p-6 space-y-4">
+            <section className="bg-white border border-gray-200 rounded-xl p-6 space-y-4 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="text-lg font-medium text-gray-800">WordPress 發佈設定（選填）</h3>
                 <div className="space-y-3">
                     <label className="block">
@@ -200,7 +200,7 @@ export function SettingsView({ onBack }: SettingsViewProps) {
             </section>
 
             {/* Data Management */}
-            <section className="bg-gray-50 rounded-lg p-6 space-y-4">
+            <section className="bg-white border border-gray-200 rounded-xl p-6 space-y-4 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="text-lg font-medium text-gray-800">資料管理</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <button
