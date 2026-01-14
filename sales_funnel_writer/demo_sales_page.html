@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 AI 廣告操盤手大師班 | 立崴 Liwei Sia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0F1115;
+            --surface-color: #1A1D24;
+            --surface-highlight: #252830;
+            --text-primary: #FFFFFF;
+            --text-secondary: #9CA3AF;
+            --accent-primary: #6366F1; /* Indigo 500 */
+            --accent-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
+            --alert-color: #F87171;
+            --success-color: #34D399;
+            --font-main: 'Inter', 'Noto Sans TC', sans-serif;
+            --max-width: 1000px; /* Reading optimally */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: #D1D5DB;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Utility */
+        .text-gradient {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight-box {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        /* Components */
+        .btn {
+            display: inline-block;
+            background: var(--accent-gradient);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Header */
+        header {
+            padding: 4rem 0;
+            text-align: center;
+            background: radial-gradient(circle at top center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p.subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Section: Problem */
+        .section-problem {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--surface-highlight);
+        }
+
+        .quote-block {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1.5rem;
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 300;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        /* Section: Segmentation */
+        .section-segmentation {
+            padding: 6rem 0;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-highlight);
+            padding: 2rem;
+            border-radius: 16px;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* Section: Roadmap */
+        .section-roadmap {
+            padding: 6rem 0;
+            background: var(--surface-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roadmap-container {
+            position: relative;
+            margin-top: 3rem;
+        }
+
+        /* Draw a simple line for visual guide */
+        .roadmap-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px; /* Mobile alignment */
+            width: 2px;
+            background: var(--surface-highlight);
+            z-index: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .roadmap-container::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .milestone {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+            .milestone:nth-child(odd) {
+                flex-direction: row-reverse;
+            }
+            .milestone:nth-child(even) {
+                flex-direction: row;
+            }
+        }
+
+        .milestone-marker {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--surface-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            margin-right: 1.5rem;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .milestone-marker {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
+            }
+            .milestone-content {
+                width: 42%;
+            }
+            .milestone:nth-child(odd) .milestone-content {
+                text-align: left; /* Keep left alignment for readability even on right side? Or center? Let's keep strict sides */
+                margin-left: auto; /* Push to right */
+                padding-left: 3rem;
+            }
+            .milestone:nth-child(even) .milestone-content {
+                text-align: right;
+                margin-right: auto; /* Push to left */
+                padding-right: 3rem;
+            }
+        }
+
+        .milestone h4 {
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.25rem;
+        }
+
+        .milestone h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .milestone p {
+            font-size: 0.95rem;
+        }
+
+        /* Section: Instructors */
+        .section-instructors {
+            padding: 6rem 0;
+        }
+
+        .instructors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .instructor-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+            border: 1px solid var(--surface-highlight);
+            padding: 2rem;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .instructor-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--surface-highlight);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            border: 2px solid var(--accent-primary);
+        }
+
+        .instructor-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Section: Resources */
+        .section-resources {
+            padding: 6rem 0;
+            background: #111;
+        }
+
+        .resource-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: flex-start;
+            background: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .resource-check {
+            color: var(--success-color);
+            margin-right: 1rem;
+            font-size: 1.25rem;
+        }
+
+        /* Footer / Sticky CTA */
+        .final-cta {
+            text-align: center;
+            padding: 6rem 1.5rem;
+            background: radial-gradient(circle at center, #262142 0%, #0F1115 70%);
+        }
+
+        .price-tag {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .milestone-marker {
+                margin-right: 1rem;
+            }
+            .milestone {
+                padding-left: 0;
+            }
+            /* Reset roadmap content for mobile */
+            .milestone-content {
+                width: 100%;
+                text-align: left !important;
+                padding: 0 !important;
+            }
+            .section-problem, .section-segmentation, .section-roadmap, .section-instructors {
+                padding: 4rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header>
+        <div class="container">
+            <span class="tag">2026 實戰班 Limited Edition</span>
+            <h1>Meta & Google 雙主流<br><span class="text-gradient">廣告大師培訓計畫</span></h1>
+            <p class="subtitle">從掌握底層邏輯到建立高轉換獲客系統<br>掌握 AI 時代的精準獲客邏輯，建立你的行銷生存資產。</p>
+            <div style="margin-top: 2rem;">
+                <a href="#" class="btn">立即報名卡位</a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">限額 15 名 · 小班制教學</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- PROBLEM / HOOK SECTION -->
+    <section class="section-problem">
+        <div class="container">
+            <div class="quote-block">
+                「以前有投就有動，現在怎麼投都像在燒錢？」
+            </div>
+            <p>
+                這是我在 2025 年底幫一位學員健檢帳號時，最常聽到的心酸。<br>
+                過去我們習慣的是「流量紅利時代」，只要基本的廣告設定正確，通常都能看到不錯的轉換。但在 2026 年，隨著 Privacy Sandbox 普及與 SGE 搜尋變革，廣告平台的演算法變得比以前更複雜。
+            </p>
+            <p style="font-weight: 600; color:white;">
+                如果你的思維還停留在加強推廣或盲目測試 A/B Test，你只是在幫廣告平台打工。
+            </p>
+        </div>
+    </section>
+
+    <!-- SEGMENTATION SECTION -->
+    <section class="section-segmentation">
+        <div class="container">
+            <h2 style="text-align: center;">誰適合參與這場實戰？</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto;">我們將針對不同背景的需求，提供最精準的學習切入點</p>
+            
+            <div class="cards-grid">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>行銷新手與轉職者</h3>
+                    <p>不再被生澀術語困擾。我們會用「台灣實戰」語言，帶你從 0 到 1 建立 Meta 企業管理平台、Pixel 追蹤與基本投放流程。</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3>現職廣告投手</h3>
+                    <p>卡在成效瓶頸了嗎？我們將深入探討「廣告投放後」的最佳化邏輯，包含數據健檢、競價模式分析與跨平台策略規畫。</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-icon">🛠️</div>
+                    <h3>自由工作者與創業者</h3>
+                    <p>想靠廣告技能提升接案競爭力？學會「有效率地規劃廣告策略」與「預算試算」，讓廣告成為你收入的放大器。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP SECTION -->
+    <section class="section-roadmap">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem;">你的 8 週進化路徑</h2>
+            <p style="text-align: center; margin-bottom: 3rem;">這不只是一堆錄影帶，而是一個具備「里程碑」的成長旅程</p>
+            
+            <div class="roadmap-container">
+                <!-- Step 1 -->
+                <div class="milestone">
+                    <div class="milestone-marker">1</div>
+                    <div class="milestone-content">
+                        <h4>MILESTONE 1</h4>
+                        <h3>策略規畫與預算試算</h3>
+                        <p>了解運作邏輯，制定不再盲灑錢的計畫，學會真正的預算掌控權。</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="milestone">
+                    <div class="milestone-marker">2</div>
+                    <div class="milestone-content">
+                        <h4>MILESTONE 2</h4>
+                        <h3>Meta Ads 全流程實戰</h3>
+                        <p>從帳號設定、廣告架構到素材製作重點，建立你的第一個高轉換漏斗。</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="milestone">
+                    <div class="milestone-marker">3</div>
+                    <div class="milestone-content">
+                        <h4>MILESTONE 3</h4>
+                        <h3>Google Ads 搜尋攻略</h3>
+                        <p>掌握關鍵字選取、品質評估與額外素材，佔領搜尋意圖的高地。</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="milestone">
+                    <div class="milestone-marker">4</div>
+                    <div class="milestone-content">
+                        <h4>MILESTONE 4</h4>
+                        <h3>成效監測與最佳化</h3>
+                        <p>數據健檢、歸因模式分析與視覺化數據報表，學會優化 ROI。</p>
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="milestone">
+                    <div class="milestone-marker">F</div>
+                    <div class="milestone-content">
+                        <h4>FINAL STOP</h4>
+                        <h3>結業與實踐</h3>
+                        <p>包含 1:1 諮詢對位與專屬社群持續交流，確保學成即戰。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTRUCTORS SECTION -->
+    <section class="section-instructors">
+        <div class="container">
+            <h2 style="text-align: center;">為什麼要跟我們學習？</h2>
+            
+            <div class="instructors-grid">
+                <div class="instructor-card">
+                    <div class="instructor-img">
+                        <!-- Placeholder for image -->
+                        <img src="https://liweisia.com/wp-content/uploads/2024/10/%E5%8A%89%E8%8A%B3%E5%90%9B_Colorist%E5%B1%A5%E6%AD%B7%E5%BD%A2%E8%B1%A1%E7%85%A7%E9%9B%BB%E5%AD%90%E6%AA%941_%E5%A4%A7%E7%A0%94%E5%89%B5%E6%84%8F-768x989.jpg" alt="Liwei">
+                    </div>
+                    <h3>立崴 Liwei Sia</h3>
+                    <p class="tag" style="margin: 0.5rem 0;">跨領域行銷顧問</p>
+                    <p>五年代理商端服務數十位品牌主的實戰經驗。我會分享我踩過的坑，教你如何利用 AI 寫出拒絕「支語」的高品質文案，建立品牌 EEAT。</p>
+                </div>
+
+                <div class="instructor-card">
+                    <div class="instructor-img">
+                         <img src="https://liweisia.com/wp-content/uploads/2025/02/%E5%BD%B1%E6%A3%9A%E6%94%9D%E5%BD%B1-367591-768x1152.jpg" alt="Kimberly">
+                    </div>
+                    <h3>Kimberly</h3>
+                    <p class="tag" style="margin: 0.5rem 0;">11 年資深媒體代理商主管</p>
+                    <p>Google Digital Academy 認證講師，面試過超過 100 位人才。她會帶你攻克 Google 搜尋廣告，讓複雜的術語轉化為你的職涯競爭力。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESOURCES SECTION -->
+    <section class="section-resources">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">課程資源與「陪伴式」學習架構</h2>
+            
+            <ul class="resource-list">
+                <li class="resource-item">
+                    <span class="resource-check">✓</span>
+                    <div>
+                        <h3>混合教學模式</h3>
+                        <p>6+ 小時完整錄影課程 (隨時回看) + 三場直播重點諮詢。</p>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-check">✓</span>
+                    <div>
+                        <h3>專屬討論社群</h3>
+                        <p>Line & 廣告討論群，講師與助教及時解決你的問題。</p>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-check">✓</span>
+                    <div>
+                        <h3>實戰大禮包</h3>
+                        <p>全套廣告投放企劃模板、預算試算表資源。</p>
+                    </div>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-check">✓</span>
+                    <div>
+                        <h3>1:1 客製化診斷</h3>
+                        <p>(限本期有效) 講師親自為你解決手中的廣告难题。</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>現在就開啟你的進化之旅</h2>
+            <p>小班制限額 15 名</p>
+            <div class="highlight-box" style="display:inline-block; border-color: var(--accent-primary);">
+                <p style="margin:0; font-weight:700; color: white;">開課時間：2025/8/9 - 10/2</p>
+            </div>
+            <br>
+            <a href="https://liweisia.com/product/ad-optimizer-class-2/" class="btn">立即報名卡位</a>
+            <p style="margin-top: 2rem; font-size: 0.9rem;">
+                這不只是一門課，而是你 2026 年的獲客生存資產。
+            </p>
+        </div>
+    </section>
+
+</body>
+</html>

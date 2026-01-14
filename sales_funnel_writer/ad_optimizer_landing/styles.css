@@ -1,0 +1,467 @@
+:root {
+    --primary-blue: #306DB8;
+    --accent-orange: #FFA500;
+    --text-main: #1D2939;
+    --text-light: #475467;
+    --bg-light: #F9FAFB;
+    --white: #ffffff;
+    --shadow-soft: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
+    --shadow-medium: 0 4px 6px -1px rgba(16, 24, 40, 0.1), 0 2px 4px -1px rgba(16, 24, 40, 0.06);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section {
+    padding: 100px 0;
+}
+
+/* --- Navigation --- */
+nav {
+    padding: 24px 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--accent-orange);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+nav ul a:hover {
+    color: var(--accent-orange);
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 36px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: #111827;
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background: #1F2937;
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+.btn-outline:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+/* --- Hero --- */
+.hero {
+    padding-top: 180px;
+    padding-bottom: 120px;
+    background: #F2F4F7;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero .container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 60px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 24px;
+    color: var(--text-main);
+}
+
+.hero h1 span.blue {
+    color: var(--primary-blue);
+}
+
+.hero p {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: var(--text-light);
+    max-width: 100%;
+    margin-bottom: 40px;
+}
+
+.sge-summary {
+    background: var(--white);
+    padding: 32px;
+    border-radius: var(--radius-md);
+    border: 1px solid #EAECF0;
+    box-shadow: var(--shadow-soft);
+    text-align: left;
+    margin: 40px 0;
+    font-size: 1.1rem;
+    max-width: 100%;
+}
+
+.sge-summary strong {
+    color: var(--primary-blue);
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* --- Pain Points --- */
+.pain-points {
+    background: #ffffff;
+    padding: 120px 0;
+    text-align: left;
+    border-top: 1px solid #EAECF0;
+    border-bottom: 1px solid #EAECF0;
+}
+
+.quote-box {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 40px;
+    color: var(--text-main);
+}
+
+.highlight-box {
+    background: var(--bg-light);
+    padding: 32px;
+    border-radius: var(--radius-md);
+    border: 1px solid #EAECF0;
+    display: block;
+    max-width: 100%;
+}
+
+/* --- Audience --- */
+.section-title {
+    text-align: left;
+    font-size: 3rem;
+    margin-bottom: 24px;
+    color: var(--text-main);
+}
+
+.section-subtitle {
+    text-align: left;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 64px;
+    max-width: 600px;
+}
+
+.audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.audience-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.audience-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-medium);
+}
+
+.audience-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--accent-orange);
+    opacity: 0.7;
+}
+
+.audience-card h3 {
+    margin: 20px 0 16px;
+    font-size: 1.25rem;
+    color: var(--primary-blue);
+}
+
+.audience-card p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* --- Roadmap --- */
+.roadmap {
+    background: #f1f5f9;
+}
+
+.roadmap-container {
+    padding: 40px 0;
+    position: relative;
+}
+
+.roadmap-item {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 40px;
+    position: relative;
+    padding: 32px;
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid #EAECF0;
+    transition: var(--transition);
+}
+
+.roadmap-item:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateX(10px);
+}
+
+.roadmap-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--bg-light);
+    border: none;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--primary-blue);
+    flex-shrink: 0;
+}
+
+.roadmap-content {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.roadmap-item::after {
+    display: none;
+}
+
+.roadmap-item:last-child::after {
+    display: none;
+}
+
+/* --- Instructors --- */
+.instructors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 40px;
+}
+
+.instructor-card {
+    background: var(--white);
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    box-shadow: var(--shadow-soft);
+}
+
+.instructor-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #eee;
+    object-fit: cover;
+    border: 4px solid var(--bg-light);
+}
+
+.instructor-info h3 {
+    font-size: 1.25rem;
+    color: var(--primary-blue);
+}
+
+.instructor-info .title {
+    color: var(--accent-orange);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* --- Resources --- */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.resource-item {
+    display: flex;
+    gap: 16px;
+    padding: 24px;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+}
+
+.resource-item i {
+    color: var(--accent-orange);
+    font-size: 1.5rem;
+}
+
+/* --- Footer CTA --- */
+.final-cta {
+    background: var(--primary-blue);
+    color: var(--white);
+    text-align: center;
+    position: relative;
+}
+
+.final-cta h2 {
+    font-size: 3rem;
+    margin-bottom: 24px;
+}
+
+.meta-info {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    font-size: 1.2rem;
+}
+
+.meta-info span {
+    display: block;
+    text-align: center;
+}
+
+.meta-info strong {
+    color: var(--accent-orange);
+    display: block;
+    font-size: 1.5rem;
+}
+
+footer {
+    padding: 40px 0;
+    background: #001f3f;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .instructors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .instructor-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .meta-info {
+        flex-direction: column;
+        gap: 24px;
+    }
+}

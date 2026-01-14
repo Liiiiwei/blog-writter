@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 AI 廣告大師培訓班 | 專業實戰課程</title>
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* Professional Educational Palette (Deep Slate & Royal Blue) */
+            --bg-base: #020617;
+            --bg-surface: #0f172a;
+            --bg-subtle: #1e293b;
+
+            --brand-primary: #38bdf8;
+            /* Sky Blue */
+            --brand-secondary: #818cf8;
+            /* Indigo */
+            --brand-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+
+            --text-title: #f8fafc;
+            --text-body: #94a3b8;
+            --text-muted: #64748b;
+
+            --accent-success: #10b981;
+
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(15, 23, 42, 0.6);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-body);
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* --- Typography --- */
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--text-title);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .text-gradient {
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* --- Components --- */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2.5rem;
+            background: var(--brand-gradient);
+            color: white;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.4);
+            font-size: 1.05rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 35px -8px rgba(56, 189, 248, 0.5);
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        /* --- Header / Hero --- */
+        nav {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-subtle);
+            position: sticky;
+            top: 0;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-title);
+        }
+
+        .hero {
+            padding: 10rem 0 8rem;
+            background: radial-gradient(circle at 50% -20%, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
+            text-align: center;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--brand-primary);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero p.desc {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--text-body);
+        }
+
+        /* --- SGE Summary Section --- */
+        .sge-summary {
+            margin-top: -4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .sge-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            border-radius: 20px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .sge-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--brand-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-base);
+            font-weight: 900;
+        }
+
+        /* --- Sections --- */
+        section {
+            padding: 8rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- Problem Grid --- */
+        .problem-quote {
+            padding: 3rem;
+            background: var(--bg-surface);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-quote::before {
+            content: "“";
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 10rem;
+            color: rgba(255, 255, 255, 0.05);
+            font-family: serif;
+        }
+
+        /* --- TA Selection --- */
+        .ta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .ta-item {
+            padding: 2rem;
+            border-radius: 20px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition);
+        }
+
+        .ta-item:hover {
+            border-color: var(--brand-primary);
+            background: var(--bg-subtle);
+        }
+
+        .ta-item h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .ta-item .emoji {
+            font-size: 1.5rem;
+        }
+
+        /* --- Roadmap (Vertical) --- */
+        .roadmap {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--border-subtle);
+        }
+
+        .milestone {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 4rem;
+        }
+
+        .milestone::before {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 8px;
+            width: 9px;
+            height: 9px;
+            background: var(--brand-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--brand-primary);
+            z-index: 2;
+        }
+
+        .milestone-num {
+            position: absolute;
+            left: -40px;
+            top: 0;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.05);
+            font-size: 3rem;
+        }
+
+        /* --- Instructor Profiles --- */
+        .instructor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .instructor-card {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem;
+            background: var(--bg-surface);
+            border-radius: 20px;
+        }
+
+        .instructor-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--bg-subtle);
+            flex-shrink: 0;
+            border: 2px solid var(--brand-primary);
+            overflow: hidden;
+        }
+
+        .instructor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- Resources --- */
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            padding: 2rem;
+            background: var(--bg-surface);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .resource-card i {
+            font-size: 2rem;
+            color: var(--brand-primary);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        /* --- CTA Block --- */
+        .cta-box {
+            background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+            padding: 6rem 1.5rem;
+            border-radius: 32px;
+            text-align: center;
+            border: 1px solid var(--brand-primary);
+            box-shadow: 0 0 50px -10px rgba(56, 189, 248, 0.2);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 0 4rem;
+            }
+
+            .sge-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .sge-icon {
+                margin: 0 auto;
+            }
+
+            .instructor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .instructor-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="container">
+            <div class="logo">AD <span class="text-gradient">MASTER</span></div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container">
+            <span class="badge">2026 PREMIUM WORKSHOP</span>
+            <h1>讓 Meta 與 Google<br><span class="text-gradient">成為你的獲客自動機</span></h1>
+            <p class="desc">在亂投廣告的時代，我們教你建立真正的「底層思維」與「信任資產」。不只是操作，更是策略進化。</p>
+            <a href="#enroll" class="btn-primary">立即報名課程</a>
+        </div>
+    </header>
+
+    <!-- SGE SUMMARY -->
+    <section class="sge-summary">
+        <div class="container">
+            <div class="sge-card">
+                <div class="sge-icon">AI</div>
+                <div>
+                    <h4 style="margin-bottom: 0.5rem;">SGE 核心彙整</h4>
+                    <p style="margin: 0; font-size: 0.95rem;">本課程專為 2026 廣告環境設計。結合影片學習、直播諮詢與 1:1
+                        調校。目標是協助學員跳脫「點按鈕」的層次，轉型為具備數據歸因與跨平台布局能力的專業操盤手。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section>
+        <div class="container">
+            <div class="problem-quote">
+                <h3 style="font-size: 1.75rem; font-weight: 300; line-height: 1.6;">
+                    「以前有投就有動，現在怎麼投都像在燒錢？」<br>
+                    <span style="color: var(--text-body); font-size: 1.1rem; display: block; margin-top: 1.5rem;">
+                        時代變了。隨著受眾行為破碎化，單純的興趣投遞已經失效。你需要的不是更精緻的素材，而是更精準的行銷邏輯。
+                    </span>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- TA -->
+    <section style="background: var(--bg-surface);">
+        <div class="container">
+            <div class="section-header">
+                <span class="text-gradient" style="font-weight: 800; letter-spacing: 0.1em;">TARGET AUDIENCE</span>
+                <h2>這場實戰班是為誰設計的？</h2>
+            </div>
+            <div class="ta-grid">
+                <div class="ta-item">
+                    <h3><span class="emoji">⚡</span> 行銷新手</h3>
+                    <p>用最白話的語言，從 0 到 1 建立 Meta 企業管理平台、Pixel 追蹤與基本投放流程。</p>
+                </div>
+                <div class="ta-item">
+                    <h3><span class="emoji">📈</span> 現職廣告投手</h3>
+                    <p>破解 AI 演算法黑箱，學會數據健檢、競價模式分析與跨平台策略規畫。</p>
+                </div>
+                <div class="ta-item">
+                    <h3><span class="emoji">🛠️</span> 自由工作者</h3>
+                    <p>學會「有效率地規劃廣告策略」與「預算試算」，讓廣告成為你收入的放大器。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>8 週進化里程碑</h2>
+                <p>這是一條通往專業操盤手的清晰路徑</p>
+            </div>
+
+            <div class="roadmap">
+                <div class="milestone">
+                    <span class="milestone-num">01</span>
+                    <h3>策略規畫與預算試算</h3>
+                    <p>了解運作邏輯，制定不再盲語灑錢的計畫。掌握廣告投放前的數字戰場。</p>
+                </div>
+                <div class="milestone">
+                    <span class="milestone-num">02</span>
+                    <h3>Meta Ads 全流程實戰</h3>
+                    <p>從帳號設定、廣告架構到素材製作重點。建立你的第一個高轉換獲客系統。</p>
+                </div>
+                <div class="milestone">
+                    <span class="milestone-num">03</span>
+                    <h3>Google Ads 搜尋攻略</h3>
+                    <p>掌握關鍵字意圖選取、品質評估與額外素材資源。精準捕捉搜尋漏斗的最底層。</p>
+                </div>
+                <div class="milestone">
+                    <span class="milestone-num">04</span>
+                    <h3>成效監測與最佳化</h3>
+                    <p>數據健檢、歸因模式分析與視覺化數據報表。學會如何持續獲利而非單次運氣。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTRUCTORS -->
+    <section style="background: var(--bg-surface);">
+        <div class="container">
+            <div class="section-header">
+                <h2>領路人背景</h2>
+            </div>
+            <div class="instructor-grid">
+                <div class="instructor-card">
+                    <div class="instructor-avatar">
+                        <img src="https://liweisia.com/wp-content/uploads/2024/10/%E5%8A%89%E8%8A%B3%E5%90%9B_Colorist%E5%B1%A5%E6%AD%B7%E5%BD%A2%E8%B1%A1%E7%85%A7%E9%9B%BB%E5%AD%90%E6%AA%941_%E5%A4%A7%E7%A0%94%E5%89%B5%E6%84%8F-768x989.jpg"
+                            alt="Liwei">
+                    </div>
+                    <div>
+                        <h3>立崴 Liwei Sia</h3>
+                        <p style="color: var(--brand-primary); margin-bottom: 0.5rem;">跨領域行銷顧問</p>
+                        <p style="font-size: 0.95rem;">五年代理商實戰經驗，服務數十位品牌主。教你利用 AI 建立品牌 EEAT 與高品質文案。</p>
+                    </div>
+                </div>
+                <div class="instructor-card">
+                    <div class="instructor-avatar">
+                        <img src="https://liweisia.com/wp-content/uploads/2025/02/%E5%BD%B1%E6%A3%9A%E6%94%9D%E5%BD%B1-367591-768x1152.jpg"
+                            alt="Kimberly">
+                    </div>
+                    <div>
+                        <h3>Kimberly</h3>
+                        <p style="color: var(--brand-secondary); margin-bottom: 0.5rem;">資深媒體代理商主管</p>
+                        <p style="font-size: 0.95rem;">Google 認證講師。專長搜尋廣告與職場戰略，將廣告術語轉化為你的競爭熱度。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>全方位陪伴架構</h2>
+            </div>
+            <div class="resources">
+                <div class="resource-card">
+                    <i>📺</i>
+                    <h4>混合教學模式</h4>
+                    <p>錄影課程隨時看，直播諮詢及時問。</p>
+                </div>
+                <div class="resource-card">
+                    <i>💬</i>
+                    <h4>專屬討論社群</h4>
+                    <p>廣告投放路上的戰友與導師隨時在線。</p>
+                </div>
+                <div class="resource-card">
+                    <i>🎁</i>
+                    <h4>實戰大禮包</h4>
+                    <p>全套廣告企畫模板、預算試算表資源。</p>
+                </div>
+                <div class="resource-card">
+                    <i>💎</i>
+                    <h4>1:1 深度診斷</h4>
+                    <p>直接解決你手中最棘手的廣告难题。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section id="enroll">
+        <div class="container">
+            <div class="cta-box">
+                <h2 style="margin-bottom: 1.5rem;">現在就開啟你的進化之旅</h2>
+                <p style="margin-bottom: 3rem; color: var(--text-body);">小班制限額 15 名 · 開課時間：2025/8/9 - 10/2</p>
+                <a href="https://liweisia.com/product/ad-optimizer-class-2/" class="btn-primary">立即領取課程席位</a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 4rem 0; text-align: center; border-top: 1px solid var(--border-subtle);">
+        <p style="font-size: 0.875rem; color: var(--text-muted);">&copy; 2026 AD MASTER. Designed for Professional
+            Marketers.</p>
+    </footer>
+
+</body>
+
+</html>

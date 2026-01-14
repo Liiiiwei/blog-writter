@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Japanese Minimalist Theme */
+@layer base {
+  :root {
+    --color-primary: 59 130 246;
+    /* Blue-500 */
+    --color-primary-focus: 37 99 235;
+    /* Blue-600 */
+    --color-accent: 96 165 250;
+    /* Blue-400 */
+  }
+}
+
+@layer components {
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-blue-200 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-blue-300;
+  }
+}
