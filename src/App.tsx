@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { articleApi } from './services/articleApi';
 import { useArticleFlow } from './hooks/useArticleFlow';
-import { Tab, ArticleFile } from './types';
+import { getStorageService, Article } from './services/storageService';
+import { Settings } from 'lucide-react';
 
 // Components
 import { InputStep } from './components/steps/InputStep';
@@ -10,10 +10,11 @@ import { OutlineStep } from './components/steps/OutlineStep';
 import { ArticleStep } from './components/steps/ArticleStep';
 import { FinishStep } from './components/steps/FinishStep';
 import { LibraryView } from './components/LibraryView';
+import { SettingsView } from './components/SettingsView';
 
 export default function App() {
-    const [activeTab, setActiveTab] = useState<Tab>('draft');
-    const [articles, setArticles] = useState<ArticleFile[]>([]);
+    const [activeTab, setActiveTab] = useState<'draft' | 'library' | 'settings'>('draft');
+    const [articles, setArticles] = useState<Article[]>([]);
     const [libLoading, setLibLoading] = useState(false);
 
     const {
@@ -34,7 +35,9 @@ export default function App() {
     const fetchLibArticles = async () => {
         setLibLoading(true);
         try {
-            const data = await articleApi.fetchArticles();
+            const storage = getStorageService();
+            await storage.init();
+            const data = await storage.listArticles();
             setArticles(data);
         } catch (e) {
             console.error(e);
@@ -43,11 +46,10 @@ export default function App() {
         }
     };
 
-    const handleLoadArticle = async (filename: string) => {
+    const handleLoadArticle = async (articleId: string) => {
         setLibLoading(true);
         try {
-            const data = await articleApi.getArticle(filename);
-            actions.loadArticleData(data.content, filename);
+            await actions.loadArticleData(articleId);
             setActiveTab('draft');
         } catch (e) {
             alert('無法讀取文章內容');
@@ -74,19 +76,28 @@ export default function App() {
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                     {/* Tabs */}
                     <div className="flex border-b border-gray-200 bg-gray-50/50">
-                        {['draft', 'library'].map((t) => (
-                            <button
-                                key={t}
-                                onClick={() => setActiveTab(t as Tab)}
-                                className={`flex-1 px-6 py-4 text-sm font-medium transition-colors relative ${activeTab === t ? 'text-blue-600' : 'text-gray-500 hover:text-gray-800'
-                                    }`}
-                            >
-                                {t === 'draft' ? '構思大綱' : '文章庫存'}
-                                {activeTab === t && (
-                                    <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500" />
-                                )}
-                            </button>
-                        ))}
+                        <div className="flex-1 flex">
+                            {[{ key: 'draft', label: '構思大綱' }, { key: 'library', label: '文章庫存' }].map((tab) => (
+                                <button
+                                    key={tab.key}
+                                    onClick={() => setActiveTab(tab.key as any)}
+                                    className={`flex-1 px-6 py-4 text-sm font-medium transition-colors relative ${activeTab === tab.key ? 'text-blue-600' : 'text-gray-500 hover:text-gray-800'
+                                        }`}
+                                >
+                                    {tab.label}
+                                    {activeTab === tab.key && (
+                                        <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500" />
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                        <button
+                            onClick={() => setActiveTab('settings')}
+                            className="px-4 py-4 text-gray-500 hover:text-gray-800 transition-colors border-l border-gray-200"
+                            title="設定"
+                        >
+                            <Settings size={18} />
+                        </button>
                     </div>
 
                     <div className="p-8">
@@ -105,6 +116,8 @@ export default function App() {
                                         onRefresh={fetchLibArticles}
                                         onLoadArticle={handleLoadArticle}
                                     />
+                                ) : activeTab === 'settings' ? (
+                                    <SettingsView onBack={() => setActiveTab('draft')} />
                                 ) : (
                                     <>
                                         {step === 'input' && (

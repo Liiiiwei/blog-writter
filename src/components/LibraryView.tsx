@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
-import { RefreshCw, FileText, Loader2, Eye, Edit } from 'lucide-react';
-import { ArticleFile } from '../types';
-import { articleApi } from '../services/articleApi';
+import { RefreshCw, FileText, Loader2, Eye, Edit, Download } from 'lucide-react';
+import { Article, getStorageService } from '../services/storageService';
 import { PreviewModal } from './PreviewModal';
 
 interface Props {
-    articles: ArticleFile[];
+    articles: Article[];
     loading: boolean;
     onRefresh: () => void;
-    onLoadArticle: (name: string) => void;
+    onLoadArticle: (id: string) => void;
 }
 
 export const LibraryView: React.FC<Props> = ({ articles, loading, onRefresh, onLoadArticle }) => {
     const [previewContent, setPreviewContent] = useState<string | null>(null);
     const [previewLoading, setPreviewLoading] = useState(false);
 
-    const handlePreview = async (filename: string) => {
+    const handlePreview = async (articleId: string) => {
         setPreviewLoading(true);
         try {
-            const data = await articleApi.getArticle(filename);
-            setPreviewContent(data.content);
+            const storage = getStorageService();
+            await storage.init();
+            const article = await storage.getArticle(articleId);
+            if (article) {
+                setPreviewContent(article.content);
+            } else {
+                alert('找不到文章');
+            }
         } catch (e) {
             alert('無法讀取預覽');
         } finally {
@@ -27,8 +32,33 @@ export const LibraryView: React.FC<Props> = ({ articles, loading, onRefresh, onL
         }
     };
 
+    const handleDownload = async (articleId: string) => {
+        try {
+            const storage = getStorageService();
+            await storage.init();
+            const article = await storage.getArticle(articleId);
+            if (article) {
+                storage.exportArticleAsMarkdown(article);
+            } else {
+                alert('找不到文章');
+            }
+        } catch (e) {
+            alert('下載失敗');
+        }
+    };
+
     const handleClosePreview = () => {
         setPreviewContent(null);
+    };
+
+    const formatDate = (timestamp: number) => {
+        return new Date(timestamp).toLocaleDateString('zh-TW', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
     };
 
     return (
@@ -55,37 +85,45 @@ export const LibraryView: React.FC<Props> = ({ articles, loading, onRefresh, onL
                 <div className="text-center py-16 text-gray-400">
                     <FileText size={48} className="mx-auto mb-4 opacity-20" />
                     <p className="text-sm">尚未有任何文章</p>
+                    <p className="text-xs mt-2">開始創作您的第一篇文章吧！</p>
                 </div>
             )}
 
             <div className="space-y-3">
-                {articles.map((f, idx) => (
+                {articles.map((article) => (
                     <div
-                        key={idx}
+                        key={article.id}
                         className="group p-4 rounded-lg border border-gray-200 hover:border-gray-300 bg-white transition-all flex justify-between items-center"
                     >
-                        <div className="flex items-center gap-4">
-                            <FileText size={20} className="text-gray-300" />
-                            <div>
-                                <h3 className="font-medium text-gray-800 transition-colors truncate max-w-[200px] sm:max-w-xs">
-                                    {f.name.replace('.md', '').replace(/^\d{4}-\d{2}-\d{2}_/, '').replace(/_/g, ' ')}
+                        <div className="flex items-center gap-4 flex-1 min-w-0">
+                            <FileText size={20} className="text-gray-300 flex-shrink-0" />
+                            <div className="min-w-0 flex-1">
+                                <h3 className="font-medium text-gray-800 transition-colors truncate">
+                                    {article.title}
                                 </h3>
                                 <p className="text-xs text-gray-500 mt-1">
-                                    {new Date(f.mtime).toLocaleDateString('zh-TW')}
+                                    {formatDate(article.updatedAt)}
                                 </p>
                             </div>
                         </div>
-                        <div className="flex items-center gap-2">
-                             <button 
-                                onClick={() => handlePreview(f.name)}
-                                className="p-2 rounded-md text-gray-500 hover:text-blue-600 hover:bg-blue-100 transition-colors"
+                        <div className="flex items-center gap-2 flex-shrink-0">
+                            <button
+                                onClick={() => handlePreview(article.id)}
+                                className="p-2 rounded-md text-gray-500 hover:text-blue-600 hover:bg-blue-50 transition-colors"
                                 title="預覽文章"
                             >
                                 <Eye size={18} />
                             </button>
-                            <button 
-                                onClick={() => onLoadArticle(f.name)}
-                                className="p-2 rounded-md text-gray-500 hover:text-green-600 hover:bg-green-100 transition-colors"
+                            <button
+                                onClick={() => handleDownload(article.id)}
+                                className="p-2 rounded-md text-gray-500 hover:text-purple-600 hover:bg-purple-50 transition-colors"
+                                title="下載 Markdown"
+                            >
+                                <Download size={18} />
+                            </button>
+                            <button
+                                onClick={() => onLoadArticle(article.id)}
+                                className="p-2 rounded-md text-gray-500 hover:text-green-600 hover:bg-green-50 transition-colors"
                                 title="載入編輯"
                             >
                                 <Edit size={18} />
@@ -94,7 +132,7 @@ export const LibraryView: React.FC<Props> = ({ articles, loading, onRefresh, onL
                     </div>
                 ))}
             </div>
-            
+
             {previewContent && (
                 <PreviewModal content={previewContent} onClose={handleClosePreview} />
             )}
