@@ -165,6 +165,7 @@ export default function App() {
                                                 {...article}
                                                 loading={flowLoading}
                                                 onPublish={actions.publish}
+                                                onSave={actions.save}
                                             />
                                         )}
                                         {step === 'finish' && (

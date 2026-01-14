@@ -178,7 +178,7 @@ export function useArticleFlow() {
     /**
      * 發佈至 WordPress
      */
-    const handlePublish = async () => {
+    const handlePublish = async (status: 'draft' | 'publish' = 'draft') => {
         const wpUrl = localStorage.getItem('wp_site_url');
         const wpUser = localStorage.getItem('wp_username');
         const wpPassword = localStorage.getItem('wp_app_password');
@@ -199,7 +199,7 @@ export function useArticleFlow() {
                 body: JSON.stringify({
                     title: articleTitle || title,
                     content: articleContent,
-                    status: wpStatus,
+                    status: status,
                     slug: urlSlug
                 })
             });
@@ -214,6 +214,30 @@ export function useArticleFlow() {
 
         } catch (e: any) {
             alert(`發佈失敗: ${e.message}`);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    /**
+     * 儲存文章變更 (手動存擋)
+     */
+    const handleSaveUpdate = async () => {
+        if (!currentArticleId) return;
+
+        setLoading(true);
+        try {
+            const storage = getStorageService();
+            await storage.init();
+            await storage.updateArticle(currentArticleId, {
+                title: articleTitle,
+                content: articleContent, // 使用當前狀態中的內容
+                seo: articleSEO,
+                urlSlug
+            });
+            alert('文章已儲存！');
+        } catch (e: any) {
+            alert(`儲存失敗: ${e.message}`);
         } finally {
             setLoading(false);
         }
@@ -305,7 +329,8 @@ export function useArticleFlow() {
             generateOutline: handleGenerateOutline,
             generateArticle: handleGenerateArticle,
             publish: handlePublish,
-            loadArticleData
+            loadArticleData,
+            save: handleSaveUpdate
         }
     };
 }
